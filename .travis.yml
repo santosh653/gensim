@@ -16,12 +16,12 @@ matrix:
   include:
     - python: '3.6'
       env: TOXENV="flake8,flake8-docs"
-
+      arch: amd64
     - python: '3.8'
       env:
         - TOXENV="py38-linux"
       dist: bionic
-
+      arch: amd64
     - python: '3.7'
       env:
         - TOXENV="py37-linux"
@@ -30,10 +30,34 @@ matrix:
         # - BOTO_CONFIG="/dev/null"
       #sudo: true
       dist: xenial
+      arch: amd64
 
     - python: '3.6'
       env: TOXENV="py36-linux"
+      arch: amd64
+    
+    - python: '3.6'
+      env: TOXENV="flake8,flake8-docs"
+      arch: ppc64le
+    - python: '3.8'
+      env:
+        - TOXENV="py38-linux"
+      dist: bionic
+      arch: ppc64le
+    - python: '3.7'
+      env:
+        - TOXENV="py37-linux"
+      # The following two lines used to be necessary because Travis left files lying around in ~/.aws/,
+      # messing up our tests. Now fixed since https://github.com/travis-ci/travis-ci/issues/7940
+        # - BOTO_CONFIG="/dev/null"
+      #sudo: true
+      dist: xenial
+      arch: ppc64le
 
+    - python: '3.6'
+      env: TOXENV="py36-linux"
+      arch: ppc64le
+      
 
 install:
   - pip install tox
